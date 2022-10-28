@@ -1,0 +1,30 @@
+:root {
+    --background-color: #7f9183; 
+    --div-background-color: #586f6b;
+    --div-text-color: #b8b8aa; 
+    --div-border-color:  #010400;
+    --last-color: #e55934;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 100px;
+    background-color: var(--background-color);
+    margin: auto;
+}
+
+div {
+    background-color: var(--div-background-color);
+    color: var(--div-text-color);
+    border-color: var(--div-border-color);
+    border-style: solid;
+    border-width: medium;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    max-width: 500px;
+    min-width: 300px;
+
+}
