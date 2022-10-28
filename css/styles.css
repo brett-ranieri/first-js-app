@@ -8,7 +8,7 @@
 
 body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 40px;
     padding: 100px;
     background-color: var(--background-color);
@@ -24,7 +24,28 @@ div {
     border-radius: 15px;
     padding: 20px;
     text-align: center;
-    max-width: 500px;
     min-width: 300px;
+} 
 
+#pokeball {
+    width: 100px;
+    float: left;
+}
+
+#pokeball-att {
+    font-size:7px;
+    float: left;
+}
+
+#header-div {
+    background-color: var(--background-color);
+    color: var(--last-color);
+    border-style: none;
+    text-align: center;
+}
+
+h1 {
+    font-size: 60px;
+    text-shadow: 0 0 5px #000;
+    margin: 0px;
 }
