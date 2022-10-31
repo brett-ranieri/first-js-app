@@ -12,7 +12,21 @@ let pokemonRepository = (function() {
     ]; 
 
     function add(pokemon) {
-        pokemonList.push(pokemon);
+        if (typeof pokemon === 'object') {
+            if (
+                Object.keys(pokemon).includes('name') &&
+                Object.keys(pokemon).includes('type') &&
+                Object.keys(pokemon).includes('height')
+            ) {
+                pokemonList.push(pokemon);
+            } else {
+                alert('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
+            }
+            
+        } else {
+            console.log('You can only add Objects to the list.');
+        }
+        
     }
 
     function getAll() {
@@ -39,4 +53,18 @@ function loopList(pokemon){
 }
 pokemonRepository.getAll().forEach(loopList);
 
+console.log(pokemonRepository.getAll());
 
+let pikachu = {name: 'Pikachu', type: 'Electric', height: .4};
+
+pokemonRepository.add(pikachu);
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add({name: 'Caterpie', type: 'Bug', height: .3});
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add({name: 'Metapod', type: 'Bug'});
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add('Butterfree');
+console.log(pokemonRepository.getAll());
