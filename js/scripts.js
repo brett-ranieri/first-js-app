@@ -13,6 +13,7 @@ let pokemonRepository = (function() {
 
     function add(pokemon) {
         if (typeof pokemon === 'object') {
+            //checks for inclusion of specific keys
             if (
                 Object.keys(pokemon).includes('name') &&
                 Object.keys(pokemon).includes('type') &&
@@ -20,7 +21,7 @@ let pokemonRepository = (function() {
             ) {
                 pokemonList.push(pokemon);
             } else {
-                alert('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
+                console.log('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
             }
             
         } else {
@@ -55,6 +56,9 @@ pokemonRepository.getAll().forEach(loopList);
 
 console.log(pokemonRepository.getAll());
 
+//code to test functionality of type of and Object.keys conditionals.
+console.log("TEST RESULTS BELOW")
+
 let pikachu = {name: 'Pikachu', type: 'Electric', height: .4};
 
 pokemonRepository.add(pikachu);
@@ -64,6 +68,12 @@ pokemonRepository.add({name: 'Caterpie', type: 'Bug', height: .3});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.add({name: 'Metapod', type: 'Bug'});
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add({name: 'Metapod', height: .7});
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.add({type: 'Bug', height: .7});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.add('Butterfree');
