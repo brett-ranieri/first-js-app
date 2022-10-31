@@ -12,14 +12,17 @@ let pokemonList = [
 
 
 let big = '- Wow, that\'s big!';
-for (let i=0; i < pokemonList.length; i++) {
-  //Writes Name and Height of all Pokemon to the DOM AND Labels biggest Pokemon  
-    if (pokemonList[i].height > 1.7) {
-        document.write('<div>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ' m) ' + big + '</div>');
+
+function loopList(pokemon){
+    //Writes Name and Height of all Pokemon to the DOM AND Labels biggest Pokemon  
+    if (pokemon.height > 1.7) {
+        document.write('<div>' + pokemon.name + ' (height: ' + pokemon.height + ' m) ' + big + '</div>');
     } 
     //Writes Name and Height of all Pokemon to the DOM
     else {
-        document.write('<div>' + pokemonList[i].name + ' (height: ' + pokemonList[i].height + ' m)' + '</div>');
+        document.write('<div>' + pokemon.name + ' (height: ' + pokemon.height + ' m)' + '</div>');
     }
 }
+pokemonList.forEach(loopList);
+
 
