@@ -33,10 +33,13 @@ let pokemonRepository = (function() {
     function getAll() {
         return pokemonList;
     }
+//FILTER BONUS EXERCISE
+    let find = pokemonList.filter( pokemon => pokemonList.name);
 
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        find: find
     }
 })();
 
@@ -78,3 +81,5 @@ console.log(pokemonRepository.getAll());
 
 pokemonRepository.add('Butterfree');
 console.log(pokemonRepository.getAll());
+
+//FILTER Function Bonus Exercise
