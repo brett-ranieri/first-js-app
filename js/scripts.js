@@ -33,13 +33,10 @@ let pokemonRepository = (function() {
     function getAll() {
         return pokemonList;
     }
-//FILTER BONUS EXERCISE
-    let find = pokemonList.filter( pokemon => pokemonList.name);
 
     return {
         add: add,
         getAll: getAll,
-        find: find
     }
 })();
 
@@ -59,27 +56,13 @@ pokemonRepository.getAll().forEach(loopList);
 
 console.log(pokemonRepository.getAll());
 
-//code to test functionality of type of and Object.keys conditionals.
-console.log("TEST RESULTS BELOW")
+let pokemonList = pokemonRepository.getAll();
+// Is this good practice?
+// Thought was to declare new variable outside of IIFE to access pokemonList.
+// Should I not be resuing the same name for this though?
 
-let pikachu = {name: 'Pikachu', type: 'Electric', height: .4};
+let query = prompt('Enter name of the Pokemon you seek', 'Enter name here');
 
-pokemonRepository.add(pikachu);
-console.log(pokemonRepository.getAll());
+const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
 
-pokemonRepository.add({name: 'Caterpie', type: 'Bug', height: .3});
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.add({name: 'Metapod', type: 'Bug'});
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.add({name: 'Metapod', height: .7});
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.add({type: 'Bug', height: .7});
-console.log(pokemonRepository.getAll());
-
-pokemonRepository.add('Butterfree');
-console.log(pokemonRepository.getAll());
-
-//FILTER Function Bonus Exercise
+console.log(filteredPokemon);
