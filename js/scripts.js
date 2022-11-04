@@ -1,5 +1,5 @@
 let pokemonRepository = (function() {
-    let pokemonList = [
+    let dataSet = [
         {name: 'Bulbasaur', type: ['Grass', 'poison'], height: .7},
         {name: 'Ivysaur', type: ['Grass', 'poison'], height: 1},
         {name: 'Venusaur', type: ['Grass', 'poison'], height: 2},
@@ -19,7 +19,7 @@ let pokemonRepository = (function() {
                 Object.keys(pokemon).includes('type') &&
                 Object.keys(pokemon).includes('height')
             ) {
-                pokemonList.push(pokemon);
+                dataSet.push(pokemon);
             } else {
                 console.log('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
             }
@@ -31,7 +31,7 @@ let pokemonRepository = (function() {
     }
 
     function getAll() {
-        return pokemonList;
+        return dataSet;
     }
 
     return {
