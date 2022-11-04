@@ -7,15 +7,25 @@
 }
 
 body {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 100px;
     background-color: var(--background-color);
+}
+
+header {
+    display: inline-block;
+    text-align: center;
     margin: auto;
 }
 
-div {
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-inline-start: 0px;
+    text-align: center;
+    padding: 20px;
+}
+
+.listItem {
     background-color: var(--div-background-color);
     color: var(--div-text-color);
     border-color: var(--div-border-color);
@@ -26,6 +36,7 @@ div {
     text-align: center;
     min-width: 300px;
     box-shadow: 10px 7px 5px var(--last-color);
+    margin: 20px;
 } 
 
 #pokeball {
@@ -41,13 +52,32 @@ div {
 #header-div {
     background-color: var(--background-color);
     color: var(--last-color);
-    border-style: none;
     text-align: center;
-    box-shadow: none;
 }
 
 h1 {
     font-size: 60px;
     text-shadow: 0 0 5px #000;
     margin: 0px;
+    float:right
+}
+
+
+
+
+
+/* ////////////RESPONSIVE DESIGN STYLING/////////////
+Do NOT OVERWRITE!!
+*/
+
+@media all and (max-width: 725px) {
+    ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media all and (min-width: 725px) and (max-width: 1080px) {
+    ul {
+        grid-template-columns: 1fr 1fr;
+    }
 }
