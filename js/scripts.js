@@ -30,6 +30,16 @@ let pokemonRepository = (function() {
         
     }
 
+    function addListItem(pokemon) {
+        let masterList = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText = pokemon.name;
+        button.classList.add('listItem')
+        listItem.appendChild(button);
+        masterList.appendChild(listItem);
+    }
+    
     function getAll() {
         return dataSet;
     }
@@ -37,21 +47,16 @@ let pokemonRepository = (function() {
     return {
         add: add,
         getAll: getAll,
+        addListItem: addListItem,
     }
 })();
 
 let big = '- Wow, that\'s big!';
 
 function loopList(pokemon){
-    //Writes Name and Height of all Pokemon to the DOM AND Labels biggest Pokemon  
-    if (pokemon.height > 1.7) {
-        document.write('<div>' + pokemon.name + ' (height: ' + pokemon.height + ' m) ' + big + '</div>');
-    } 
-    //Writes Name and Height of all Pokemon to the DOM
-    else {
-        document.write('<div>' + pokemon.name + ' (height: ' + pokemon.height + ' m)' + '</div>');
-    }
+   pokemonRepository.addListItem(pokemon);
 }
+
 pokemonRepository.getAll().forEach(loopList);
 
 console.log(pokemonRepository.getAll());
