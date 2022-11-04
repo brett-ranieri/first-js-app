@@ -56,13 +56,22 @@ pokemonRepository.getAll().forEach(loopList);
 
 console.log(pokemonRepository.getAll());
 
-let pokemonList = pokemonRepository.getAll();
-// Is this good practice?
-// Thought was to declare new variable outside of IIFE to access pokemonList.
-// Should I not be resuing the same name for this though?
 
-let query = prompt('Enter name of the Pokemon you seek', 'Enter name here');
 
-const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
 
-console.log(filteredPokemon);
+
+
+
+
+
+//////// Filter Funtction Below - to be added with Search Input later //////////////
+
+//let pokemonList = pokemonRepository.getAll();
+
+//let query = prompt('Enter name of the Pokemon you seek', 'Enter name here');
+//update this query using classList and selected (exercise 1.6)
+//pair this with a CSS rule display:none to onlyshow pokemon that include query 
+
+//const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
+
+//console.log(filteredPokemon);
