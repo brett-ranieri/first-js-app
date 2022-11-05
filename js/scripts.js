@@ -31,15 +31,29 @@ let pokemonRepository = (function() {
     }
 
     function addListItem(pokemon) {
-        let masterList = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
+
+        let masterList = document.querySelector('.pokemon-list');
+
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add('listItem')
+        button.classList.add('listItem');
+        addPokemonEventListener(button, pokemon);
+
         listItem.appendChild(button);
         masterList.appendChild(listItem);
     }
     
+    function addPokemonEventListener(element, pokemon) {
+        element.addEventListener('click', function() {
+          showDetails(pokemon);  
+        });
+    }
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
     function getAll() {
         return dataSet;
     }
@@ -50,6 +64,7 @@ let pokemonRepository = (function() {
         addListItem: addListItem,
     }
 })();
+//End of IIFE
 
 let big = '- Wow, that\'s big!';
 
@@ -69,7 +84,7 @@ console.log(pokemonRepository.getAll());
 
 
 
-//////// Filter Funtction Below - to be added with Search Input later //////////////
+//////// Filter Function Below - to be added with Search Input later //////////////
 
 //let pokemonList = pokemonRepository.getAll();
 
