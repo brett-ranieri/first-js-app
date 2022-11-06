@@ -62,7 +62,16 @@ h1 {
     float:right
 }
 
+#loading-message {
+    display: none;
+    color: var(--last-color);
+    text-shadow: 0 0 5px #000;
+    text-align: center;
+}
 
+.loading {
+    display: block;
+}
 
 
 

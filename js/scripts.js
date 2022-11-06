@@ -23,29 +23,29 @@ let pokemonRepository = (function() {
     }
 
     function addListItem(pokemon) {
-        let listItem = document.createElement('li');
-
-        let masterList = document.querySelector('.pokemon-list');
-
-        let button = document.createElement('button');
-        button.innerText = pokemon.name;
-        button.classList.add('listItem');
-        addPokemonEventListener(button, pokemon);
-
-        listItem.appendChild(button);
-        masterList.appendChild(listItem);
+        
+        let listItem = document.createElement('li'); //creates li
+        
+        let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
+        
+        let button = document.createElement('button'); //creates buttons
+        button.innerText = pokemon.name; //names button
+        button.classList.add('listItem'); //assigs class to button
+        addPokemonEventListener(button, pokemon); //assigns click for details to each button
+        listItem.appendChild(button); //adds newly created button as li
+        masterList.appendChild(listItem); //specifies that li should be included in HTML ul
     }
     
     function addPokemonEventListener(element, pokemon) {
         element.addEventListener('click', function() {
           showDetails(pokemon);  
-        });
+        }); //executes showDetails when a button is clicked
     }
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             console.log(pokemon);
-        });
+        }); 
     }
 
     function getAll() {
@@ -54,31 +54,55 @@ let pokemonRepository = (function() {
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
-            return response.json();
+            showLoadingMessage();
+            // testing functionality of loading message functions
+            console.log(loadingMessage.classList.contains('loading'));
+            return response.json(); //parses the response body into JSON data
         }).then(function (json) {
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
                     detailsUrl: item.url
-                };
-                add(pokemon);
+                }; //creates Javascript objects and assigns keys
+                add(pokemon); //calls add function
+                hideLoadingMessage(); 
+                // testing functionality of loading message functions
+                console.log(loadingMessage.classList.contains('loading'));
             });
         }).catch(function (e) {
             console.error(e);
+            hideLoadingMessage();
         })
     }
 
     function loadDetails(item) {
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
-            return response.json();
+            showLoadingMessage();
+            // testing functionality of loading message functions
+            console.log(loadingMessage.classList.contains('loading'));
+            return response.json(); //parses the response body into JSON data
         }).then(function(details) {
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
             item.types = details.types;
+            hideLoadingMessage();
+            // testing functionality of loading message functions
+            console.log(loadingMessage.classList.contains('loading'));
         }).catch(function (e) {
             console.error(e);
+            hideLoadingMessage();
         });
+    }
+
+    let loadingMessage = document.querySelector('#loading-message');
+
+    function showLoadingMessage() {
+        loadingMessage.classList.add('loading');
+    }
+
+    function hideLoadingMessage() {
+        loadingMessage.classList.remove('loading');
     }
 
     return {
