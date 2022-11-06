@@ -82,7 +82,7 @@ let pokemonRepository = (function() {
             // testing functionality of loading message functions
             console.log(loadingMessage.classList.contains('loading'));
             return response.json(); //parses the response body into JSON data
-        }).then(function(details) {
+        }).then(function(details) { //believe this is how you talk to API to pull specific data and assign it to a key
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
             item.types = details.types;
