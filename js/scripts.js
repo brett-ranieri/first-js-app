@@ -1,3 +1,5 @@
+//************Start of Pokemon Repository IIFE*******************
+
 let pokemonRepository = (function() {
     let dataSet = []; 
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -29,27 +31,11 @@ let pokemonRepository = (function() {
         let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
         
         let button = document.createElement('button'); //creates buttons
-        button.innerText = pokemon.name; //names button
+        button.innerText = pokemon.name.toUpperCase(); //names button
         button.classList.add('listItem'); //assigs class to button
         addPokemonEventListener(button, pokemon); //assigns click for details to each button
         listItem.appendChild(button); //adds newly created button as li
         masterList.appendChild(listItem); //specifies that li should be included in HTML ul
-    }
-    
-    function addPokemonEventListener(element, pokemon) {
-        element.addEventListener('click', function() {
-          showDetails(pokemon);  
-        }); //executes showDetails when a button is clicked
-    }
-
-    function showDetails(pokemon) {
-        loadDetails(pokemon).then(function () {
-            console.log(pokemon);
-        }); 
-    }
-
-    function getAll() {
-        return dataSet;
     }
 
     function loadList() {
@@ -62,10 +48,11 @@ let pokemonRepository = (function() {
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
-                    detailsUrl: item.url
+                    detailsUrl: item.url,
+                    height: item.height
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
-                hideLoadingMessage(); 
+                hideLoadingMessage();
                 // testing functionality of loading message functions
                 console.log(loadingMessage.classList.contains('loading'));
             });
@@ -86,15 +73,91 @@ let pokemonRepository = (function() {
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
             item.types = details.types;
-            hideLoadingMessage();
             // testing functionality of loading message functions
+            hideLoadingMessage();
             console.log(loadingMessage.classList.contains('loading'));
         }).catch(function (e) {
             console.error(e);
             hideLoadingMessage();
         });
+
     }
 
+    function showDetails(pokemon) {
+        pokemonRepository.loadDetails(pokemon).then(function () {
+            showModal(pokemon);
+        }); 
+    }
+
+    function addPokemonEventListener(element, pokemon) {
+        element.addEventListener('click', function() {
+          showDetails(pokemon);  
+        }); //executes showDetails when a button is clicked
+    }
+//*******************START - Modal Code*********************************************
+
+    let modalContainer = document.querySelector('#modal-container');
+
+    function showModal (pokemon) {
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.setAttribute('id', 'poke-modal'); //needed to be able to remove modal
+        modal.innerText = '';
+
+        // Specifying new modal content
+        let modalCloseButton = document.createElement('button');
+        modalCloseButton.classList.add('modal-close');
+        modalCloseButton.innerText = 'Close';
+        modalCloseButton.addEventListener('click', hideModal);
+        
+        let pokemonName = document.createElement('h3');
+        pokemonName.innerText =  pokemon.name.toUpperCase();
+
+        let pokemonHeight = document.createElement('p');
+        pokemonHeight.innerText = ('Height: ' + pokemon.height);
+
+        let pokemonImage = document.createElement('img');
+        pokemonImage.classList.add('pokemon-image');
+        pokemonImage.alt = 'Image of ' + pokemon.name;
+        pokemonImage.src = pokemon.imageUrl;
+
+
+        // Add items to modal/modalContainer
+        modal.appendChild(modalCloseButton);
+        modal.appendChild(pokemonImage);
+        modal.appendChild(pokemonName);
+        modal.appendChild(pokemonHeight);
+        modalContainer.appendChild(modal);
+        modalContainer.classList.add('is-visible');
+    
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+    }
+
+    function hideModal () {
+        modalContainer.classList.remove('is-visible');
+// added this functionality to prevent multiple modals, now removes the entire element on close
+        let element = document.getElementById('poke-modal');
+        element?.remove(); // had console TypeError (cannot read props of null) when closing the 
+        // modal by clicking in the container. Spoke to my wife about it, she suggested using 
+        // optional chaining, but we spoke about ternaries and if statement solutions as well.
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();
+        }
+    });
+
+    
+//*******************END - Modal Code***********************************************
+
+//*******************START - Loading Message****************************************
+    
     let loadingMessage = document.querySelector('#loading-message');
 
     function showLoadingMessage() {
@@ -105,6 +168,12 @@ let pokemonRepository = (function() {
         loadingMessage.classList.remove('loading');
     }
 
+//********************END - Loading Message******************************************  
+
+    function getAll() {
+        return dataSet;
+    }
+
     return {
         add: add,
         getAll: getAll,
@@ -112,16 +181,15 @@ let pokemonRepository = (function() {
         loadList: loadList,
         loadDetails: loadDetails
     };
+
 })();
-//End of IIFE
+//***********End of Pokemon Repository IIFE**************
 
 pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.addListItem(pokemon);
     });
 });
-
-
 
 
 
