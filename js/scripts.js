@@ -101,8 +101,8 @@ let pokemonRepository = (function() {
     function showModal (pokemon) {
         let modal = document.createElement('div');
         modal.classList.add('modal');
-        modal.setAttribute('id', 'poke-modal'); //needed to be able to remove modal
         modal.innerText = '';
+        modalContainer.innerHTML = ''; //added to prevent multiple modals
 
         // Specifying new modal content
         let modalCloseButton = document.createElement('button');
@@ -140,11 +140,6 @@ let pokemonRepository = (function() {
 
     function hideModal () {
         modalContainer.classList.remove('is-visible');
-// added this functionality to prevent multiple modals, now removes the entire element on close
-        let element = document.getElementById('poke-modal');
-        element?.remove(); // had console TypeError (cannot read props of null) when closing the 
-        // modal by clicking in the container. Spoke to my wife about it, she suggested using 
-        // optional chaining, but we spoke about ternaries and if statement solutions as well.
     }
 
     window.addEventListener('keydown', (e) => {
