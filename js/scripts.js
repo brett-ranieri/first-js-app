@@ -51,8 +51,7 @@ let pokemonRepository = (function() {
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
-                    detailsUrl: item.url,
-                    height: item.height
+                    detailsUrl: item.url
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
                 hideLoadingMessage();
@@ -74,8 +73,10 @@ let pokemonRepository = (function() {
             return response.json(); //parses the response body into JSON data
         }).then(function(details) { //believe this is how you talk to API to pull specific data and assign it to a key
             item.imageUrl = details.sprites.front_default;
+            item.imageUrlBack = details.sprites.back_default;
             item.height = details.height;
-            item.types = details.types;
+            item.weight = details.weight;
+            item.types = details.types.map((type) => type.type.name).join(', '); //needed to update to show text of types - basic understanding of what is happening here...
             // testing functionality of loading message functions
             hideLoadingMessage();
             console.log(loadingMessage.classList.contains('loading'));
@@ -165,10 +166,34 @@ let pokemonRepository = (function() {
         modalTitle.innerText = '';
         modalBody.innerText = '';
 
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = pokemon.name.toUpperCase();
+        let pokemonName = document.createElement('h1');
+        pokemonName.innerText = pokemon.name.toUpperCase();
 
-        modalTitle.appendChild(titleElement);
+        let pokemonImgFront = document.createElement('img');
+        pokemonImgFront.classList.add('pokemon-image', 'modal-img');
+        pokemonImgFront.alt = 'Image of front of ' + pokemon.name;
+        pokemonImgFront.src = pokemon.imageUrl;
+
+        let pokemonImgBack = document.createElement('img');
+        pokemonImgBack.classList.add('pokemon-image', 'modal-img');
+        pokemonImgBack.alt = 'Image of front of ' + pokemon.name;
+        pokemonImgBack.src = pokemon.imageUrlBack;
+
+        let pokemonType = document.createElement('p');
+        pokemonType.innerText = 'Type: ' + pokemon.types;
+
+        let pokemonHeight = document.createElement('p');
+        pokemonHeight.innerText = 'Height: ' + pokemon.height;
+
+        let pokemonWeight = document.createElement('p');
+        pokemonWeight.innerText = 'Weight: ' + pokemon.weight;
+
+        modalTitle.appendChild(pokemonName);
+        modalBody.appendChild(pokemonImgFront);
+        modalBody.appendChild(pokemonImgBack);
+        modalBody.appendChild(pokemonType);
+        modalBody.appendChild(pokemonHeight);
+        modalBody.appendChild(pokemonWeight);
     }
 
 //***************************END - BootStrap Modal*************************************

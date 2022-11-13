@@ -116,8 +116,7 @@ h1 {
 }
 
 .pokemon-image {
-    float: left;
-    width: 130px;
+    width: 50%;
     padding: 20px;
 }
 
