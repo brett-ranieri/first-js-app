@@ -161,7 +161,7 @@ let pokemonRepository = (function() {
 //*******************END - Modal Code***********************************************
 
 //***********************START - BootStrap Modal***********************************
-   // let modalContainer = document.querySelector('#modal-container'); 
+   //let modalContainer = document.querySelector('#modal-container'); 
 
     function showModal(pokemon){
         let modalBody = document.querySelector('.modal-body');
@@ -169,8 +169,6 @@ let pokemonRepository = (function() {
 
         modalTitle.innerText = '';
         modalBody.innerText = '';
-
-        modalBody.classList.add();
 
         let pokemonName = document.createElement('h1');
         pokemonName.innerText = pokemon.name.toUpperCase();
