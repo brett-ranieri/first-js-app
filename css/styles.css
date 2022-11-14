@@ -42,9 +42,10 @@ ul {
     float: left;
 }
 
-#pokeball-att {
+.pokeball-att {
     font-size:7px;
     float: left;
+    padding: 3px;
 }
 
 #header-div {
