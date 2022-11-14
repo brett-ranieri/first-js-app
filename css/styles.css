@@ -21,12 +21,6 @@
     padding: 3px;
 }
 
-#header-div {
-    background-color: var(--background-color);
-    color: var(--last-color);
-    text-align: center;
-}
-
 body {
     background-color: var(--background-color);
 }
