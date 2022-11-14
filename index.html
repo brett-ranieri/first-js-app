@@ -8,18 +8,20 @@
     <title>First JS App</title>
   </head>
   <body>
-    <header>
-        <div id="header-div">
-            <img src="img/pokeball.png" alt="Drawing of a pokeball" id="pokeball">
-            <h1>
-                Pokedex
-            </h1>
-            <br>
-            <p id="pokeball-att">
-                Image by <a href="https://www.freepngimg.com/png/37545-pokeball-free-download">FreePNGImg.com</a>
-            </p>
-        </div>
-    </header>
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="img/pokeball.png" width="30" height="30" class="d-inline-block align-top" alt="Drawing of a pokeball">
+        Pokedex
+      </a>
+      <p id="pokeball-att">
+        Image by <a href="https://www.freepngimg.com/png/37545-pokeball-free-download">FreePNGImg.com</a>
+      </p>
+      <form class="form-inline">
+        <input class="search-bar form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    
     <main>
         <h2 id="loading-message">Loading...</h2>
 
@@ -38,11 +40,8 @@
                   ...
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
                     Close
-                  </button>
-                  <button type="button" class="btn btn-primary">
-                    Save changes
                   </button>
                 </div>
               </div>

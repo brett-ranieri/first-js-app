@@ -34,8 +34,8 @@ let pokemonRepository = (function() {
         let button = document.createElement('button'); //creates buttons
         button.innerText = pokemon.name.toUpperCase(); //names button
         button.classList.add('listItem'); //assigs class to button
-        button.setAttribute('data-toggle', 'modal'); //tells button to toggle the modal
-        button.setAttribute('data-target', '#modal-container'); //specifies the target element that will be changed
+        button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
+        button.setAttribute('data-target', '#modal-container'); //BOOTSTRAP: specifies the target element that will be changed
         addPokemonEventListener(button, pokemon); //assigns click for details to each button
         listItem.appendChild(button); //adds newly created button as li
         masterList.appendChild(listItem); //specifies that li should be included in HTML ul
@@ -176,7 +176,7 @@ let pokemonRepository = (function() {
 
         let pokemonImgBack = document.createElement('img');
         pokemonImgBack.classList.add('pokemon-image', 'modal-img');
-        pokemonImgBack.alt = 'Image of front of ' + pokemon.name;
+        pokemonImgBack.alt = 'Image of back of ' + pokemon.name;
         pokemonImgBack.src = pokemon.imageUrlBack;
 
         let pokemonType = document.createElement('p');
