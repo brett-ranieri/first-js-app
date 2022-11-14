@@ -17,15 +17,12 @@ let pokemonRepository = (function() {
             } else {
                 console.log('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
             }
-            
         } else {
             console.log('You can only add Objects to the list.');
         }
-        
     }
 
     function addListItem(pokemon) {
-        
         let listItem = document.createElement('li'); //creates li
         listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
         listItem.classList.add('col-sm-12'); //sets li size based on breakpoints
@@ -104,7 +101,6 @@ let pokemonRepository = (function() {
     }
 
 //***********************START - BootStrap Modal***********************************
-   //let modalContainer = document.querySelector('#modal-container'); 
 
     function showModal(pokemon){
         let modalBody = document.querySelector('.modal-body');
@@ -170,7 +166,6 @@ let pokemonRepository = (function() {
         loadList: loadList,
         loadDetails: loadDetails
     };
-
 })();
 //***********End of Pokemon Repository IIFE**************
 

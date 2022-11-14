@@ -10,43 +10,6 @@
     background-color: var(--last-color);
 }
 
-body {
-    background-color: var(--background-color);
-}
-
-.listItem {
-    background-color: var(--div-background-color);
-    color: var(--div-text-color);
-    border-color: var(--div-border-color);
-    border-style: solid;
-    border-width: medium;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    min-width: 155px; 
-    box-shadow: 10px 7px 5px var(--last-color);
-    margin: 20px;
-} 
-
-.modal-header {
-    background-color: var(--background-color);
-    color: var(--last-color)
-}
-
-.modal-body {
-    background-color: var(--div-text-color);
-    color: var(--div-border-color);
-}
-
-.modal-footer {
-    background-color: var(--background-color);
-    color: var(--last-color);
-}
-
-.btn-secondary {
-    background-color: var(--last-color);
-}
-
 #pokeball {
     width: 100px;
     float: left;
@@ -64,11 +27,8 @@ body {
     text-align: center;
 }
 
-h1 {
-    font-size: 60px;
-    text-shadow: 0 0 5px #000;
-    margin: 0px;
-    float:right
+body {
+    background-color: var(--background-color);
 }
 
 #loading-message {
@@ -82,12 +42,39 @@ h1 {
     display: block;
 }
 
+main {
+    margin-top: 100px;
+}
+
+.listItem {
+    background-color: var(--div-background-color);
+    color: var(--div-text-color);
+    border-color: var(--div-border-color);
+    border-style: solid;
+    border-width: medium;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    min-width: 155px; 
+    box-shadow: 10px 7px 5px var(--last-color);
+    margin: 20px;
+} 
+
 #modal-container {
     width: 100%;
     height: 100%;
     background: rgba(245, 109, 56, 0.6);
     overflow: auto;
+}
 
+.modal-header {
+    background-color: var(--background-color);
+    color: var(--last-color)
+}
+
+.modal-body {
+    background-color: var(--div-text-color);
+    color: var(--div-border-color);
 }
 
 .pokemon-image {
@@ -95,9 +82,28 @@ h1 {
     padding: 20px;
 }
 
-main {
-    margin-top: 100px;
+.modal-footer {
+    background-color: var(--background-color);
+    color: var(--last-color);
 }
+
+.btn-secondary {
+    background-color: var(--last-color);
+}
+
+h1 {
+    font-size: 60px;
+    text-shadow: 0 0 5px #000;
+    margin: 0px;
+    float:right
+}
+
+
+
+
+
+
+
 
 
 
