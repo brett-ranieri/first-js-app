@@ -9,22 +9,20 @@
 body {
     background-color: var(--background-color);
 }
-
+/*
 header {
     display: inline-block;
-    text-align: center;
+    /*text-align: center;
     margin: auto;
 }
 
 ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    
     padding-inline-start: 0px;
-    text-align: center;
+    
     padding: 20px;
 }
-
+*/
 .listItem {
     background-color: var(--div-background-color);
     color: var(--div-text-color);
@@ -34,7 +32,7 @@ ul {
     border-radius: 15px;
     padding: 20px;
     text-align: center;
-    min-width: 300px;
+    min-width: 155px; 
     box-shadow: 10px 7px 5px var(--last-color);
     margin: 20px;
 } 

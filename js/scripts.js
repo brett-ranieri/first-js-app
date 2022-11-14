@@ -27,7 +27,11 @@ let pokemonRepository = (function() {
     function addListItem(pokemon) {
         
         let listItem = document.createElement('li'); //creates li
-        listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
+        //listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
+        listItem.classList.add('col');
+        listItem.classList.add('col-sm-6');
+        listItem.classList.add('col-md-4');
+        listItem.classList.add('col-lg-2');
 
         let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
         
@@ -165,6 +169,8 @@ let pokemonRepository = (function() {
 
         modalTitle.innerText = '';
         modalBody.innerText = '';
+
+        modalBody.classList.add();
 
         let pokemonName = document.createElement('h1');
         pokemonName.innerText = pokemon.name.toUpperCase();
