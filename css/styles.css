@@ -6,6 +6,10 @@
     --last-color: #e55934;
 }
 
+.navbar {
+    background-color: var(--last-color);
+}
+
 body {
     background-color: var(--background-color);
 }
@@ -23,6 +27,25 @@ body {
     box-shadow: 10px 7px 5px var(--last-color);
     margin: 20px;
 } 
+
+.modal-header {
+    background-color: var(--background-color);
+    color: var(--last-color)
+}
+
+.modal-body {
+    background-color: var(--div-text-color);
+    color: var(--div-border-color);
+}
+
+.modal-footer {
+    background-color: var(--background-color);
+    color: var(--last-color);
+}
+
+.btn-secondary {
+    background-color: var(--last-color);
+}
 
 #pokeball {
     width: 100px;
