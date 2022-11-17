@@ -102,33 +102,3 @@ h1 {
     margin: 0px;
     float:right
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ////////////RESPONSIVE DESIGN STYLING/////////////
-Do NOT OVERWRITE!!
-*/
-
-@media all and (max-width: 725px) {
-    ul {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media all and (min-width: 725px) and (max-width: 1080px) {
-    ul {
-        grid-template-columns: 1fr 1fr;
-    }
-}
