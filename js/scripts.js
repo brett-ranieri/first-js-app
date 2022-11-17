@@ -9,16 +9,13 @@ let pokemonRepository = (function() {
             //checks for inclusion of specific keys
             if (
                 Object.keys(pokemon).includes('name') 
-                // ****Had to comment out to allow pokemon to meet requirements for push**** &&
-                //Object.keys(pokemon).includes('type') &&
-                //Object.keys(pokemon).includes('height')
             ) {
                 dataSet.push(pokemon);
             } else {
-                console.log('"Name", "Type", and "Height are required to add a new pokemon to the Pokedex');
+                alert('"Name" is required to add a new pokemon to the Pokedex');
             }
         } else {
-            console.log('You can only add Objects to the list.');
+            alert('You can only add Objects to the list.');
         }
     }
 
@@ -46,8 +43,6 @@ let pokemonRepository = (function() {
     function loadList() {
         return fetch(apiUrl).then(function (response) {
             showLoadingMessage();
-            // testing functionality of loading message functions
-            console.log(loadingMessage.classList.contains('loading'));
             return response.json(); //parses the response body into JSON data
         }).then(function (json) {
             json.results.forEach(function (item) {
@@ -57,8 +52,6 @@ let pokemonRepository = (function() {
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
                 hideLoadingMessage();
-                // testing functionality of loading message functions
-                console.log(loadingMessage.classList.contains('loading'));
             });
         }).catch(function (e) {
             console.error(e);
@@ -70,8 +63,6 @@ let pokemonRepository = (function() {
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
             showLoadingMessage();
-            // testing functionality of loading message functions
-            console.log(loadingMessage.classList.contains('loading'));
             return response.json(); //parses the response body into JSON data
         }).then(function(details) { //believe this is how you talk to API to pull specific data and assign it to a key
             item.imageUrl = details.sprites.front_default;
@@ -79,9 +70,7 @@ let pokemonRepository = (function() {
             item.height = details.height;
             item.weight = details.weight;
             item.types = details.types.map((type) => type.type.name).join(', '); //needed to update to show text of types - basic understanding of what is happening here...
-            // testing functionality of loading message functions
             hideLoadingMessage();
-            console.log(loadingMessage.classList.contains('loading'));
         }).catch(function (e) {
             console.error(e);
             hideLoadingMessage();
