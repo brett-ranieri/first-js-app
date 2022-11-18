@@ -40,7 +40,7 @@ main {
     margin-top: 100px;
 }
 
-.listItem {
+.list-item {
     background-color: var(--div-background-color);
     color: var(--div-text-color);
     border-color: var(--div-border-color);
@@ -92,7 +92,8 @@ button {
     color: var(--last-color);
 }
 
-.btn-secondary {
+.btn-secondary,
+.navbar-toggler {
     background-color: var(--last-color);
     padding-left: 10px !important;
 }
@@ -102,4 +103,31 @@ h1 {
     text-shadow: 0 0 5px #000;
     margin: 0px;
     float:right
+}
+
+.form-inline {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--background-color);
+    width: auto;
+    border: 2px solid #586f6b;
+    color: var(--div-border-color)
+}
+
+.dropdown-content:hover {
+    background-color: var(--div-text-color);
+}
+
+.dropdown-show {
+    display: block;
+}
+
+#dropdown-list {
+    height: 150px;
+    overflow: auto;
 }

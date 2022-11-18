@@ -30,7 +30,7 @@ let pokemonRepository = (function() {
         
         let button = document.createElement('button'); //creates buttons
         button.innerText = pokemon.name.toUpperCase(); //names button
-        button.classList.add('listItem'); //assigs class to button
+        button.classList.add('list-item'); //assigs class to button
         button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
         button.classList.add('col-sm-12'); //sets button size based on breakpoints
         button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
@@ -143,6 +143,69 @@ let pokemonRepository = (function() {
     }
 
 //********************END - Loading Message******************************************  
+//********************START Nav-Bar Search Function***********************************
+
+function navBarSearch (e) {
+    e.preventDefault()
+    
+    let searchField = document.getElementById('nav-search');
+    let dropDown = document.getElementById('dropdown-list');
+    let dropDownModal = document.getElementById('result-dropdown');
+    
+
+    let pokemonList = pokemonRepository.getAll();
+    let input = searchField.value.toLowerCase();
+    const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(input));
+    console.log(filteredPokemon.length);
+    dropDown.innerText = filteredPokemon.length ? '': null;
+    filteredPokemon.forEach(addToDropdown);
+
+    function addSearchResultEventListener(element, pokemon) {
+          element.addEventListener('click', function(e) {
+             e.preventDefault();
+             showDetails(pokemon);  
+             document.getElementById('result-dropdown').classList.remove('dropdown-show');
+             searchField.value = '';
+            });
+      }  
+
+    function addToDropdown(pokemon) {
+        if (filteredPokemon.length > 0) {
+            console.log('im hit');
+        let searchItem = document.createElement('li');
+        searchItem.classList.add('group-list-item');
+        searchItem.classList.add('col-12');  
+
+        let searchButton = document.createElement('button');
+        searchButton.innerText = pokemon.name.toUpperCase();
+        searchButton.classList.add('search-list-item');
+        searchButton.classList.add('group-list-item');
+        searchButton.classList.add('col-12');
+        searchButton.setAttribute('data-toggle', 'modal');
+        searchButton.setAttribute('data-target', '#modal-container');
+        addSearchResultEventListener(searchButton, pokemon);
+
+        dropDown.appendChild(searchItem);
+        searchItem.appendChild(searchButton);
+        console.log(pokemon.name);
+        } else {
+            console.log('nope');
+
+        let error = document.createElement('p');
+        error.innerText = 'No Pokemon match your search criteria';
+        dropDownModal.appendChild(error);
+        }
+        
+        
+    }
+
+    dropDownModal.classList.add('dropdown-show');
+
+
+}
+document.getElementById('nav-button').addEventListener("click", (e) => navBarSearch(e));
+
+//**************************END Nav-Bar Search***************************************//
 
     function getAll() {
         return dataSet;
@@ -153,7 +216,7 @@ let pokemonRepository = (function() {
         getAll: getAll,
         addListItem: addListItem,
         loadList: loadList,
-        loadDetails: loadDetails
+        loadDetails: loadDetails,
     };
 })();
 //***********End of Pokemon Repository IIFE**************
@@ -173,14 +236,22 @@ pokemonRepository.loadList().then(function() {
 
 
 
-//////// Filter Function Below - to be added with Search Input later //////////////
 
-//let pokemonList = pokemonRepository.getAll();
 
-//let query = prompt('Enter name of the Pokemon you seek', 'Enter name here');
-//update this query using classList and selected (exercise 1.6)
-//pair this with a CSS rule display:none to onlyshow pokemon that include query 
 
-//const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(query.toLowerCase()));
 
-//console.log(filteredPokemon);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
