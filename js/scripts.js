@@ -31,6 +31,7 @@ let pokemonRepository = (function() {
         let button = document.createElement('button'); //creates buttons
         button.innerText = pokemon.name.toUpperCase(); //names button
         button.classList.add('list-item'); //assigs class to button
+        button.classList.add('index-list-item');
         button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
         button.classList.add('col-sm-12'); //sets button size based on breakpoints
         button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal

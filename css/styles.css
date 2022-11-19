@@ -61,8 +61,8 @@ main {
     padding-left: 0px;
 }
 
-button {
-    padding-left: 30px !important;
+.index-list-item {
+    padding-left: 30px;
 }
 
 #modal-container {
@@ -95,7 +95,6 @@ button {
 .btn-secondary,
 .navbar-toggler {
     background-color: var(--last-color);
-    padding-left: 10px !important;
 }
 
 h1 {
