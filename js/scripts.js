@@ -223,6 +223,14 @@ function navBarSearch (e) {
         });
     }
 
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dropDownModal.classList.contains('dropdown-show')) {
+            console.log('saw it');
+            dropDownModal.classList.remove('dropdown-show');
+            $("#result-dropdown button").remove();
+        }
+    });
+
     closeDrop();
     dropDownModal.classList.add('dropdown-show');
 }
