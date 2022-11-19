@@ -171,7 +171,7 @@ function navBarSearch (e) {
         console.log('maybe');
         if ((array.length <= 0) || (array.length === 150)) {
             let error = document.createElement('li');
-            error.innerText = 'No Pokemon match your search criteria';
+            error.innerText = 'No matching Pokemon...You gotta go catch \'em!';
             error.classList.add('error-list-item');
             error.classList.add('search-list-item');
             error.classList.add('group-list-item');
@@ -265,7 +265,7 @@ function hideLoadingMessage() {
 
 //********************END - Loading Message******************************************  
 
-pokemonRepository.loadList().then(function() {
+pokemonRepository.loadList().then(function() { //Calls all functions in IIFE to populate the UL on load
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.loadDetails(pokemon).then(function () {
             showLoadingMessage();
