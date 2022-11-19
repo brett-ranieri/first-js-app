@@ -23,7 +23,6 @@ let pokemonRepository = (function() {
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
-            showLoadingMessage();
             return response.json(); //parses the response body into JSON data
         }).then(function (json) {
             json.results.forEach(function (item) {
@@ -33,18 +32,16 @@ let pokemonRepository = (function() {
                     detailsUrl: item.url
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
-                hideLoadingMessage();
             });
         }).catch(function (e) {
             console.error(e);
-            hideLoadingMessage();
-        })
+        });
     }
+
 
     function loadDetails(item) {
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
-            showLoadingMessage();
             return response.json(); //parses the response body into JSON data
         }).then(function(details) { //believe this is how you talk to API to pull specific data and assign it to a key
             item.imageUrl = details.sprites.front_default;
@@ -52,10 +49,8 @@ let pokemonRepository = (function() {
             item.height = details.height;
             item.weight = details.weight;
             item.types = details.types.map((type) => type.type.name).join(', '); //needed to update to show text of types - basic understanding of what is happening here...
-            hideLoadingMessage();
         }).catch(function (e) {
             console.error(e);
-            hideLoadingMessage();
         });
     }
 
@@ -94,7 +89,7 @@ let pokemonRepository = (function() {
             pokemonImgFront.classList.add('pokemon-image', 'modal-img');
             pokemonImgFront.alt = 'Image of front of ' + pokemon.name;
             pokemonImgFront.src = pokemon.imageUrl;
-            
+
         button.appendChild(pokemonImgFront);
         listItem.appendChild(button); //adds newly created button as li
         masterList.appendChild(listItem); //specifies that li should be included in HTML ul 
@@ -141,19 +136,7 @@ let pokemonRepository = (function() {
 
 //***************************END - BootStrap Modal*************************************
 
-//*******************START - Loading Message****************************************
-    
-    let loadingMessage = document.querySelector('#loading-message');
 
-    function showLoadingMessage() {
-        loadingMessage.classList.add('loading');
-    }
-
-    function hideLoadingMessage() {
-        loadingMessage.classList.remove('loading');
-    }
-
-//********************END - Loading Message******************************************  
 //********************START Nav-Bar Search Function***********************************
 
 function navBarSearch (e) {
@@ -250,9 +233,9 @@ document.getElementById('nav-button').addEventListener("click", (e) => navBarSea
 
 //**************************END Nav-Bar Search***************************************//
 
-    function getAll() {
-        return dataSet;
-    }
+function getAll(){
+    return dataSet;
+}
 
     return {
         add: add,
@@ -264,15 +247,35 @@ document.getElementById('nav-button').addEventListener("click", (e) => navBarSea
 })();
 //***********End of Pokemon Repository IIFE**************
 
+//*******************START - Loading Message****************************************
+    
+let loadingMessage = document.querySelector('#loading-message');
+
+function showLoadingMessage() {
+    if (document.readyState !== 'complete') {
+        loadingMessage.classList.add('loading');
+    }
+}
+function hideLoadingMessage() {
+    if (document.readyState === 'complete') {
+        loadingMessage.classList.remove('loading');
+    }
+}
+
+
+//********************END - Loading Message******************************************  
+
 pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.loadDetails(pokemon).then(function () {
+            showLoadingMessage();
             pokemonRepository.addListItem(pokemon);
         }); 
     });
+    hideLoadingMessage();
 });
 
-
+showLoadingMessage();
 
 
 

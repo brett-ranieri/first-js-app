@@ -33,7 +33,7 @@ body {
 }
 
 .loading {
-    display: block;
+    display: block !important;
 }
 
 main {
