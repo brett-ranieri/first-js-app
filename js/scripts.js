@@ -19,27 +19,7 @@ let pokemonRepository = (function() {
         }
     }
 
-    function addListItem(pokemon) {
-        let listItem = document.createElement('li'); //creates li
-        listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
-        listItem.classList.add('col-sm-12'); //sets li size based on breakpoints
-        listItem.classList.add('col-md-6');
-        listItem.classList.add('col-lg-3');
 
-        let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
-        
-        let button = document.createElement('button'); //creates buttons
-        button.innerText = pokemon.name.toUpperCase(); //names button
-        button.classList.add('list-item'); //assigs class to button
-        button.classList.add('index-list-item');
-        button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
-        button.classList.add('col-sm-12'); //sets button size based on breakpoints
-        button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
-        button.setAttribute('data-target', '#modal-container'); //BOOTSTRAP: specifies the target element that will be changed
-        addPokemonEventListener(button, pokemon); //assigns click for details to each button
-        listItem.appendChild(button); //adds newly created button as li
-        masterList.appendChild(listItem); //specifies that li should be included in HTML ul
-    }
 
     function loadList() {
         return fetch(apiUrl).then(function (response) {
@@ -49,6 +29,7 @@ let pokemonRepository = (function() {
             json.results.forEach(function (item) {
                 let pokemon = {
                     name: item.name,
+                    height: item.height,
                     detailsUrl: item.url
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
@@ -88,6 +69,35 @@ let pokemonRepository = (function() {
         element.addEventListener('click', function() {
           showDetails(pokemon);  
         }); //executes showDetails when a button is clicked
+    }
+
+    function addListItem(pokemon) {
+        let listItem = document.createElement('li'); //creates li
+            listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
+            listItem.classList.add('col-sm-12'); //sets li size based on breakpoints
+            listItem.classList.add('col-md-6');
+            listItem.classList.add('col-lg-3');
+
+        let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
+            
+        let button = document.createElement('button'); //creates buttons
+            button.innerText = pokemon.name.toUpperCase(); //names button
+            button.classList.add('list-item'); //assigs class to button
+            button.classList.add('index-list-item');
+            button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
+            button.classList.add('col-sm-12'); //sets button size based on breakpoints
+            button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
+            button.setAttribute('data-target', '#modal-container'); //BOOTSTRAP: specifies the target element that will be changed
+            addPokemonEventListener(button, pokemon); //assigns click for details to each button
+
+        let pokemonImgFront = document.createElement('img');
+            pokemonImgFront.classList.add('pokemon-image', 'modal-img');
+            pokemonImgFront.alt = 'Image of front of ' + pokemon.name;
+            pokemonImgFront.src = pokemon.imageUrl;
+            
+        button.appendChild(pokemonImgFront);
+        listItem.appendChild(button); //adds newly created button as li
+        masterList.appendChild(listItem); //specifies that li should be included in HTML ul 
     }
 
 //***********************START - BootStrap Modal***********************************
@@ -256,7 +266,9 @@ document.getElementById('nav-button').addEventListener("click", (e) => navBarSea
 
 pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function(pokemon){
-        pokemonRepository.addListItem(pokemon);
+        pokemonRepository.loadDetails(pokemon).then(function () {
+            pokemonRepository.addListItem(pokemon);
+        }); 
     });
 });
 
