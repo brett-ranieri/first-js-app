@@ -151,23 +151,39 @@ function navBarSearch (e) {
     let searchField = document.getElementById('nav-search');
     let dropDown = document.getElementById('dropdown-list');
     let dropDownModal = document.getElementById('result-dropdown');
+    dropDown.innerText = '';
     
 
     let pokemonList = pokemonRepository.getAll();
     let input = searchField.value.toLowerCase();
     const filteredPokemon = pokemonList.filter(x => x.name.toLowerCase().includes(input));
     console.log(filteredPokemon.length);
-    dropDown.innerText = filteredPokemon.length ? '': null;
+    
+    noMatch(filteredPokemon);
     filteredPokemon.forEach(addToDropdown);
 
     function addSearchResultEventListener(element, pokemon) {
-          element.addEventListener('click', function(e) {
+        element.addEventListener('click', function(e) {
              e.preventDefault();
              showDetails(pokemon);  
              document.getElementById('result-dropdown').classList.remove('dropdown-show');
              searchField.value = '';
             });
       }  
+
+    function noMatch(array) {
+        console.log('maybe');
+        if (array.length <= 0) {
+            let error = document.createElement('li');
+            error.innerText = 'No Pokemon match your search criteria';
+            error.classList.add('error-list-item');
+            error.classList.add('search-list-item');
+            error.classList.add('group-list-item');
+            error.classList.add('col-12');
+            dropDown.appendChild(error);
+            console.log('nope');
+        }
+    }
 
     function addToDropdown(pokemon) {
         if (filteredPokemon.length > 0) {
@@ -188,20 +204,25 @@ function navBarSearch (e) {
         dropDown.appendChild(searchItem);
         searchItem.appendChild(searchButton);
         console.log(pokemon.name);
-        } else {
-            console.log('nope');
-
-        let error = document.createElement('p');
-        error.innerText = 'No Pokemon match your search criteria';
-        dropDownModal.appendChild(error);
-        }
-        
-        
+        } 
     }
 
+    function closeDrop () {
+        let closeButton = document.createElement('button');
+        closeButton.classList.add('btn');
+        closeButton.classList.add('close-button');
+        closeButton.innerText = 'Close';
+        dropDownModal.appendChild(closeButton);
+        closeButton.addEventListener("click", function (e){
+            e.preventDefault();
+            searchField.value = '';
+            dropDownModal.classList.remove('dropdown-show');
+            dropDownModal.removeChild(closeButton);
+        });
+    }
+
+    closeDrop();
     dropDownModal.classList.add('dropdown-show');
-
-
 }
 document.getElementById('nav-button').addEventListener("click", (e) => navBarSearch(e));
 

@@ -128,6 +128,16 @@ h1 {
 }
 
 #dropdown-list {
-    height: 150px;
+    max-height: 150px;
     overflow: auto;
+}
+.search-list-item{
+    background-color: yellowgreen;
+}
+.error-list-item {
+    background-color: lightseagreen;
+}
+
+.close-button {
+    background-color: red;
 }
