@@ -168,6 +168,8 @@ function navBarSearch (e) {
              showDetails(pokemon);  
              document.getElementById('result-dropdown').classList.remove('dropdown-show');
              searchField.value = '';
+             $("#result-dropdown button").remove();
+             console.log('should be removed');
             });
       }  
 
@@ -224,6 +226,7 @@ function navBarSearch (e) {
     closeDrop();
     dropDownModal.classList.add('dropdown-show');
 }
+
 document.getElementById('nav-button').addEventListener("click", (e) => navBarSearch(e));
 
 //**************************END Nav-Bar Search***************************************//
