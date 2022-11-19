@@ -175,7 +175,7 @@ function navBarSearch (e) {
 
     function noMatch(array) {
         console.log('maybe');
-        if (array.length <= 0) {
+        if ((array.length <= 0) || (array.length === 150)) {
             let error = document.createElement('li');
             error.innerText = 'No Pokemon match your search criteria';
             error.classList.add('error-list-item');
@@ -188,7 +188,7 @@ function navBarSearch (e) {
     }
 
     function addToDropdown(pokemon) {
-        if (filteredPokemon.length > 0) {
+        if ((filteredPokemon.length > 0) && (filteredPokemon.length != 150)) {
             console.log('im hit');
         let searchItem = document.createElement('li');
         searchItem.classList.add('group-list-item');
