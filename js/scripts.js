@@ -69,7 +69,7 @@ let pokemonRepository = (function() {
     function addListItem(pokemon) {
         let listItem = document.createElement('li'); //creates li
             listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
-            listItem.classList.add('col-sm-12'); //sets li size based on breakpoints
+            listItem.classList.add('col-12'); //sets li size based on breakpoints
             listItem.classList.add('col-md-6');
             listItem.classList.add('col-lg-4');
 
