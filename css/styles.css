@@ -1,3 +1,4 @@
+/* //////////////////////////////// Colors ////////////////////////////////// */
 :root {
     --background-color: #7f9183; 
     --div-background-color: #586f6b;
@@ -5,7 +6,7 @@
     --div-border-color:  #010400;
     --last-color: #e55934;
 }
-
+/* /////////////////////////////// NavBar ////////////////////////////////// */
 .navbar {
     background-color: var(--last-color);
 }
@@ -20,7 +21,7 @@
     float: left;
     padding: 3px;
 }
-
+/* //////////////////////// Page Body ////////////////////////////////////*/
 body {
     background-color: var(--background-color);
 }
@@ -39,6 +40,7 @@ body {
 main {
     margin-top: 100px;
 }
+/* /////////////////////// List Items /////////////////////////////////// */
 
 .list-item {
     background-color: var(--div-background-color);
@@ -53,21 +55,15 @@ main {
     min-width: 155px; 
     box-shadow: 7px 7px 3px rgb(112, 46, 29);
     margin: 20px;
+    text-shadow: 2px 2px 4px #000;
 } 
 
 .list-item:hover {
     background-color: var(--div-text-color);
     color: var(--div-background-color);
     box-shadow: 7px 7px 3px var(--last-color);
+    text-shadow: 2px 2px 4px var(--last-color);
 }
-
-/* .col-lg-3, 
-.col-md-6,
-.col-sm-12 {
-    padding-right: 0px;
-    padding-left: 0px;
-} */
-
 .pokemon-image {
     width: 80%;
     padding: none;
@@ -80,39 +76,7 @@ main {
     padding-bottom: 1em;
 }
 
-.card-btn,
-#nav-button {
-    background-color: var(--div-background-color);
-    color: var(--div-text-color);
-    border-color: var(--div-border-color);
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 7px;
-}
-
-.card-btn:hover,
-.close-button:hover,
-.search-list-item:hover {
-    background-color: var(--div-text-color);
-    color: var(--last-color);
-    font-weight: bold;
-    border-color: var(--last-color);
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 7px;
-}
-
-#nav-button:hover,
-#nav-hamburger:hover {
-    background-color: var(--background-color);
-    color: var(--div-border-color);
-    font-weight: bold;
-    border-color: var(--div-text-color);
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 7px;
-}
-
+/* ///////////////////////////////// Modal //////////////////////////////*/
 #modal-container {
     width: 100%;
     height: 100%;
@@ -122,12 +86,18 @@ main {
 }
 
 .modal-content {
-    border-radius: 30px;
+    border-radius: 15px;
+    border-color: var(--div-border-color);
+    border-style: solid;
+    border-width: medium;
 }
 
 .modal-header {
     background-color: var(--background-color);
     color: var(--last-color);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-color: var(--div-border-color);
 }
 
 .modal-body {
@@ -137,26 +107,21 @@ main {
 
 .modal-img {
     width: 50%;
-    padding: 20px;
 }
 
 .modal-footer {
     background-color: var(--background-color);
     color: var(--last-color);
-}
-
-.btn-secondary,
-.navbar-toggler {
-    background-color: var(--last-color);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-color: var(--div-border-color);
 }
 
 h1 {
-    font-size: 60px;
-    text-shadow: 0 0 5px #000;
+    text-shadow: 2px 2px 4px #000;
     margin: 0px;
-    float:right
 }
-
+/* ////////////////////////////////// Drop Down //////////////////////////////////// */
 .form-inline {
     position: relative;
     display: inline-block;
@@ -194,14 +159,38 @@ h1 {
     color: var(--div-border-color);
 }
 
-.close-button {
+/* ////////////////// Buttons ////////////////////////////// */
+.card-btn,
+#nav-button {
+    background-color: var(--div-background-color);
+    color: var(--div-text-color);
+    border-color: var(--div-border-color);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+}
+
+.close-button,
+#modal-button {
     background-color: var(--div-background-color);
     color: var(--div-text-color);
     margin-bottom: 20px;
-    width: 100%;
+    width: 175px;
 }
 
-.close-button:hover {
+
+.btn-secondary,
+.navbar-toggler {
+    background-color: var(--last-color);
+}
+/* ///////////////////////// Hover/Focus /////////////////////////// */
+#nav-search:focus {
+    border-color: var(--div-border-color);
+    border-width: 2px;
+} 
+
+.close-button:hover,
+#modal-button:hover {
     background-color: var(--div-text-color);
     color: var(--last-color);
     font-weight: bold;
@@ -211,16 +200,25 @@ h1 {
     border-radius: 7px;
 }
 
- #nav-search:focus {
-    border-color: var(--div-border-color);
+.card-btn:hover,
+.close-button:hover,
+.search-list-item:hover {
+    background-color: var(--div-text-color);
+    color: var(--last-color);
+    font-weight: bold;
+    border-color: var(--last-color);
+    border-style: solid;
     border-width: 2px;
-} 
+    border-radius: 7px;
+}
 
-/*/////////////Media Query//////////////////// */
-
-@media (max-width: 500px) {  
-    h1 {
-        font-size:2rem;
-    } 
-  }
-   
+#nav-button:hover,
+#nav-hamburger:hover {
+    background-color: var(--background-color);
+    color: var(--div-border-color);
+    font-weight: bold;
+    border-color: var(--div-text-color);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+}
