@@ -80,7 +80,8 @@ main {
     padding-bottom: 1em;
 }
 
-.card-btn {
+.card-btn,
+#nav-button {
     background-color: var(--div-background-color);
     color: var(--div-text-color);
     border-color: var(--div-border-color);
@@ -89,11 +90,24 @@ main {
     border-radius: 7px;
 }
 
-.card-btn:hover {
+.card-btn:hover,
+.close-button:hover,
+.search-list-item:hover {
     background-color: var(--div-text-color);
     color: var(--last-color);
     font-weight: bold;
     border-color: var(--last-color);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+}
+
+#nav-button:hover,
+#nav-hamburger:hover {
+    background-color: var(--background-color);
+    color: var(--div-border-color);
+    font-weight: bold;
+    border-color: var(--div-text-color);
     border-style: solid;
     border-width: 2px;
     border-radius: 7px;
@@ -147,10 +161,9 @@ h1 {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #2d4945;
+    background-color: var(--div-text-color);
     width: auto;
-    border: 2px solid var(--div-background-color);
-    color: var(--div-border-color)
+    border: 2px solid var(--div-border-color);
 }
 
 .dropdown-show {
@@ -161,27 +174,40 @@ h1 {
     max-height: 150px;
     overflow: auto;
     padding: 15px;
-    background-color: #91ada9;
+    background-color: var(--background-color);
 }
 .search-list-item{
     background-color: var(--div-background-color);
+    color: var(--div-text-color);
     border-radius: 4px;
     border: 2px solid var(--div-border-color);
     margin: 3px;
 }
-.search-list-item:hover {
-    background-color: var(--div-text-color);
-}
 
 .error-list-item {
-    background-color: #466661;
+    background-color: var(--last-color);
     padding: 5px;
     color: var(--div-border-color);
 }
 
 .close-button {
-    background-color: var(--last-color);
+    background-color: var(--div-background-color);
     color: var(--div-text-color);
     margin-bottom: 20px;
-    float: right;
+    width: 100%;
 }
+
+.close-button:hover {
+    background-color: var(--div-text-color);
+    color: var(--last-color);
+    font-weight: bold;
+    border-color: var(--last-color);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 7px;
+}
+
+ #nav-search:focus {
+    border-color: var(--div-border-color);
+    border-width: 2px;
+} 
