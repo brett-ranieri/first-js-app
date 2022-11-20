@@ -121,9 +121,13 @@ main {
     padding-top: 8em;
 }
 
+.modal-content {
+    border-radius: 30px;
+}
+
 .modal-header {
     background-color: var(--background-color);
-    color: var(--last-color)
+    color: var(--last-color);
 }
 
 .modal-body {
@@ -131,7 +135,7 @@ main {
     color: var(--div-border-color);
 }
 
-.modal-image {
+.modal-img {
     width: 50%;
     padding: 20px;
 }
@@ -211,3 +215,12 @@ h1 {
     border-color: var(--div-border-color);
     border-width: 2px;
 } 
+
+/*/////////////Media Query//////////////////// */
+
+@media (max-width: 500px) {  
+    h1 {
+        font-size:2rem;
+    } 
+  }
+   
