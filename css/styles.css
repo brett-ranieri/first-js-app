@@ -133,6 +133,7 @@ h1 {
     background-color: var(--div-text-color);
     width: auto;
     border: 2px solid var(--div-border-color);
+    text-align: center;
 }
 
 .dropdown-show {
