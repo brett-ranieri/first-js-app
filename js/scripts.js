@@ -71,27 +71,46 @@ let pokemonRepository = (function() {
             listItem.classList.add('group-list-item'); // need to add this class to li's for bootstrap
             listItem.classList.add('col-sm-12'); //sets li size based on breakpoints
             listItem.classList.add('col-md-6');
-            listItem.classList.add('col-lg-3');
+            listItem.classList.add('col-lg-4');
 
         let masterList = document.querySelector('.pokemon-list'); //targets location for newly created elements
-            
-        let button = document.createElement('button'); //creates buttons
-            button.innerText = pokemon.name.toUpperCase(); //names button
-            button.classList.add('list-item'); //assigs class to button
-            button.classList.add('index-list-item');
-            button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
-            button.classList.add('col-sm-12'); //sets button size based on breakpoints
-            button.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
-            button.setAttribute('data-target', '#modal-container'); //BOOTSTRAP: specifies the target element that will be changed
-            addPokemonEventListener(button, pokemon); //assigns click for details to each button
-
+        
+        let card = document.createElement('div');
+            card.classList.add('list-item'); //assigns class
+            card.classList.add('group-list-item'); // need to add this class to li's for bootstrap     
+        
         let pokemonImgFront = document.createElement('img');
-            pokemonImgFront.classList.add('pokemon-image', 'modal-img');
+            pokemonImgFront.classList.add('pokemon-image');
             pokemonImgFront.alt = 'Image of front of ' + pokemon.name;
             pokemonImgFront.src = pokemon.imageUrl;
 
-        button.appendChild(pokemonImgFront);
-        listItem.appendChild(button); //adds newly created button as li
+        let cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');    
+
+        let cardHeader = document.createElement('h3');
+            cardHeader.classList.add('card-head');
+            cardHeader.innerText = pokemon.name.toUpperCase(); //names card
+
+        let cardButton = document.createElement('button'); //creates buttons
+            cardButton.innerText = 'View Details'
+            cardButton.classList.add('card-btn'); //text of button
+            // button.classList.add('list-item'); //assigs class to button
+            // button.classList.add('index-list-item');
+            // button.classList.add('group-list-item'); // need to add this class to li's for bootstrap
+            // button.classList.add('col-sm-12'); //sets button size based on breakpoints
+            cardButton.setAttribute('data-toggle', 'modal'); //BOOTSTRAP: tells button to toggle the modal
+            cardButton.setAttribute('data-target', '#modal-container'); //BOOTSTRAP: specifies the target element that will be changed
+            addPokemonEventListener(cardButton, pokemon); //assigns click for details to each button
+
+        
+        cardBody.appendChild(cardHeader);
+        cardBody.appendChild(cardButton);
+
+        card.appendChild(pokemonImgFront);
+        card.appendChild(cardBody);
+
+        //add to UL
+        listItem.appendChild(card); //adds newly created card as li
         masterList.appendChild(listItem); //specifies that li should be included in HTML ul 
     }
 
@@ -108,12 +127,12 @@ let pokemonRepository = (function() {
         pokemonName.innerText = pokemon.name.toUpperCase();
 
         let pokemonImgFront = document.createElement('img');
-        pokemonImgFront.classList.add('pokemon-image', 'modal-img');
+        pokemonImgFront.classList.add('modal-img');
         pokemonImgFront.alt = 'Image of front of ' + pokemon.name;
         pokemonImgFront.src = pokemon.imageUrl;
 
         let pokemonImgBack = document.createElement('img');
-        pokemonImgBack.classList.add('pokemon-image', 'modal-img');
+        pokemonImgBack.classList.add('modal-img');
         pokemonImgBack.alt = 'Image of back of ' + pokemon.name;
         pokemonImgBack.src = pokemon.imageUrlBack;
 
