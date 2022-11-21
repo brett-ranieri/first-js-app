@@ -29,7 +29,7 @@ let pokemonRepository = (function() {
                     detailsUrl: item.url
                 }; //creates Javascript objects and assigns keys
                 add(pokemon); //calls add function
-// console.log('1' + pokemon);
+                //console.log('3 - ' + pokemon.name);
             });
         }).catch(function (e) {
             console.error(e);
@@ -37,13 +37,13 @@ let pokemonRepository = (function() {
     }
 
     function loadDetails(item) {
-            //console.log('3 - ' + item.name);
+            //console.log('4 - ' + item.name);
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
-            //console.log('4 - ' + item.name);
+            //console.log('5 - ' + item.name);
             return response.json(); //parses the response body into JSON data
         }).then(function(details) { //believe this is how you talk to API to pull specific data and assign it to a key
-            //console.log('5 - ' + item.name);
+            //console.log('6 - ' + item.name);
             item.imageUrl = details.sprites.front_default;
             item.imageUrlBack = details.sprites.back_default;
             item.height = details.height;
@@ -106,7 +106,7 @@ let pokemonRepository = (function() {
 
         listItem.appendChild(card);
         masterList.appendChild(listItem); //add card to list
-        //console.log('6 - ' + pokemon.name);
+        //console.log('7 - ' + pokemon.name);
     }
 
 function getAll(){
