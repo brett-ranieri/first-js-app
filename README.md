@@ -22,6 +22,7 @@ PokeAPI - https://pokeapi.co/api/v2/pokemon/?limit=150
 **Promise Polyfill**  
 **Fetch Polyfill**  
 **jquery-3.3.1.slim.min.js**  
+**BOOTSTRAP**  
 **PokeAPI** 
   
 *Linters used in VSCode:   
